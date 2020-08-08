@@ -18,14 +18,14 @@
     varying vec2 vUv;
     uniform float offset;
     void main() {
-      vec4 firstColor = vec4(1.,.6235,.4941,1.);
-      vec4 secondColor = vec4(.9372,.1294,.3176,1.);
-      float lineSize = 9.;
-      float progress = pow((vUv.y)*lineSize,2.);
-      progress = progress-offset;
-      progress = (cos(progress)+1.)/2.;
-      progress = smoothstep(.45,.55,progress);
-      if(vUv.y < .9)gl_FragColor = mix(firstColor,secondColor,progress);
+      vec4 firstColor = vec4(1.,.6235,.4941,1.);//первый цвет
+      vec4 secondColor = vec4(.9372,.1294,.3176,1.);//Второй цвет
+      float lineSize = 9.;//Размер линий
+      float progress = pow((vUv.y)*lineSize,2.);// Возводим в квадрат чтобы линиии были не равномерные
+      progress = progress-offset;// отнимаем отступ для анимации, отступ меняет в update
+      progress = (cos(progress)+1.)/2.;// Высчитываем косинус чтобы значение повторялось. И были всегда от 0 до 1 прибавляем 1 делим на 2
+      progress = smoothstep(.45,.55,progress); // Сглаживание краев. чем значения дальше от .5 тем края более размытые.
+      if(vUv.y < .9)gl_FragColor = mix(firstColor,secondColor,progress); // Высчитываем цвет смешивая два в зависимости от прогресса
       else gl_FragColor = firstColor;
     }
   </script>
