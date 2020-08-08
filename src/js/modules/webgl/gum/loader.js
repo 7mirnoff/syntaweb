@@ -1,5 +1,10 @@
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+
+const dracoLoader = new DRACOLoader()
+dracoLoader.setDecoderPath('/assets/libs/draco/')
 
 const Loader = class {
   constructor (data) {
@@ -7,6 +12,7 @@ const Loader = class {
     this.res = {
       textures: {},
       fbx: {},
+      glb: {},
       scenes: {},
       images: {}
     }
@@ -71,6 +77,11 @@ const Loader = class {
     } else if (d.type === 'fbx') {
       new FBXLoader().load(d.path, function (model) {
         that.res.fbx[d.name] = model
+        that.checkProgress()
+      })
+    } else if (d.type === 'glb') {
+      new GLTFLoader().setDRACOLoader(dracoLoader).load(d.path, function (model) {
+        that.res.glb[d.name] = model
         that.checkProgress()
       })
     } else if (d.type === 'texture') {

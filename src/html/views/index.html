@@ -6,6 +6,30 @@
 <body>
   <div id="webgl_container"></div>
   <div id="simple_preloader"><div id="simple_progress_bar"></div></div>
+
+  <script id="sunVertexShader" type="x-shader/x-vertex">
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+  </script>
+  <script id="sunFragmentShader" type="x-shader/x-fragment">
+    varying vec2 vUv;
+    uniform float offset;
+    void main() {
+      vec4 firstColor = vec4(1.,.6235,.4941,1.);
+      vec4 secondColor = vec4(.9372,.1294,.3176,1.);
+      float lineSize = 9.;
+      float progress = pow((vUv.y)*lineSize,2.);
+      progress = progress-offset;
+      progress = (cos(progress)+1.)/2.;
+      progress = smoothstep(.45,.55,progress);
+      if(vUv.y < .9)gl_FragColor = mix(firstColor,secondColor,progress);
+      else gl_FragColor = firstColor;
+    }
+  </script>
+
   <script src="js/vendors.js"></script>
   <script src="js/bundle.js"></script>
 </body>

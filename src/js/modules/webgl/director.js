@@ -23,7 +23,7 @@ const director = {
         alpha: true
       }
     }, {
-      srcs: SRCS.preloader,
+      srcs: SRCS.main,
       loadCb: () => {
         hideSimplePreloader()
 
@@ -36,8 +36,26 @@ const director = {
 
 const initScene = (gum) => {
   const g = gum
-  var geometry = new THREE.BoxGeometry(1, 1, 1)
-  var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-  var cube = new THREE.Mesh(geometry, material)
-  g.v.scene.add(cube)
+  const clone = gum.d.res.glb['delorean-packed'].scene.clone()
+  g.v.scene.add(clone)
+
+  const sun = clone.getObjectByName('sun')
+  console.log(sun);
+  // sun.material = new THREE.ShaderMaterial({
+  //   uniforms: {
+  //     offset: { value: 0.0 }
+  //   },
+  //   vertexShader: document.getElementById('sunVertexShader').textContent,
+  //   fragmentShader: document.getElementById('sunFragmentShader').textContent
+  // })
+
+  sun.material = new THREE.MeshBasicMaterial({
+    color: 0xFF0000,    // red (можно также использовать css цвета)
+  });
+
+  console.log(sun);
+  console.log(sun);
+  g.l.addLoop('sunShaider', () => {
+  })
+
 }
