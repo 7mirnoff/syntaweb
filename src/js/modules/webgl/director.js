@@ -39,8 +39,6 @@ const initScene = (gum) => {
   const clone = gum.d.res.glb['delorean-packed'].scene.clone()
   g.v.scene.add(clone)
 
-  const sun = clone.getObjectByName('body')
-
   const uniforms = {
     offset: {
       type: 'f',
@@ -48,20 +46,14 @@ const initScene = (gum) => {
     }
   }
 
-  var geometry = new THREE.CircleGeometry( 5, 32 );
+  var geometry = new THREE.CircleGeometry(5, 32)
   var material = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: document.getElementById('sunVertexShader').textContent,
     fragmentShader: document.getElementById('sunFragmentShader').textContent
   })
-  var circle = new THREE.Mesh( geometry, material );
-  g.v.scene.add( circle );
-
-  sun.material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    vertexShader: document.getElementById('sunVertexShader').textContent,
-    fragmentShader: document.getElementById('sunFragmentShader').textContent
-  })
+  var circle = new THREE.Mesh(geometry, material)
+  // g.v.scene.add( circle );
 
   g.l.addLoop('sunShaider', () => {
     uniforms.offset.value += 0.05

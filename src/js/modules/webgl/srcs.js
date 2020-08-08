@@ -3,7 +3,7 @@ const SRCS = {
   ],
   main: [
     {
-      path: '/assets/models/delorean-packed3.glb',
+      path: '/assets/models/delorean-packed.glb',
       name: 'delorean-packed',
       type: 'glb'
     }
