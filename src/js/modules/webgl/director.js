@@ -59,4 +59,37 @@ const initScene = (gum) => {
     uniforms.offset.value += 0.05
   })
 
+
+
+
+
+
+
+
+
+
+  // MOVE Plane
+
+
+
+
+
+  const plane = clone.getObjectByName('plane')
+  const planeCopy3 = plane.clone()
+  plane.add( planeCopy3 );
+  const lenght = plane.children[0].geometry.boundingBox.size().z
+  planeCopy3.position.z += lenght
+
+  let counter = 2
+  g.l.addLoop('move', () => {
+    plane.position.z -= 0.4
+
+    if (plane.position.z <= -lenght * (counter - 1)) {
+      console.log(lenght * (counter - 1));
+      counter++
+      const planeCopy = clone.getObjectByName('plane').clone()
+      planeCopy.position.z += lenght * (counter - 1)
+      plane.add( planeCopy );
+    }
+  })
 }
