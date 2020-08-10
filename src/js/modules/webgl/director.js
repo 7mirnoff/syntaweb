@@ -75,21 +75,24 @@ const initScene = (gum) => {
 
 
   const plane = clone.getObjectByName('plane')
-  const planeCopy3 = plane.clone()
-  plane.add( planeCopy3 );
-  const lenght = plane.children[0].geometry.boundingBox.size().z
-  planeCopy3.position.z += lenght
 
-  let counter = 2
+  const plane2 = clone.getObjectByName('plane').clone()
+
+  const wapper = new THREE.Object3D()
+  plane.add(wapper)
+  const lenght = plane.children[0].geometry.boundingBox.size().z
+
+  let counter = 1
+  console.log(g.v.renderer)
   g.l.addLoop('move', () => {
     plane.position.z -= 0.4
 
-    if (plane.position.z <= -lenght * (counter - 1)) {
-      console.log(lenght * (counter - 1));
+    if (plane.position.z <= -lenght * (counter)) {
+      console.log(1)
       counter++
-      const planeCopy = clone.getObjectByName('plane').clone()
-      planeCopy.position.z += lenght * (counter - 1)
-      plane.add( planeCopy );
+      const planeCopy = plane2.clone()
+      planeCopy.position.z += lenght * (counter)
+      wapper.add(planeCopy)
     }
   })
 }

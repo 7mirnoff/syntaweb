@@ -8,3 +8,4 @@
 *.woff2 binary
 *.glb binary
 *.fbx binary
+*.wasm binary

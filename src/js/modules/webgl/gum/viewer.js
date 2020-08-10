@@ -6,12 +6,9 @@ const Viewer = class {
   constructor (data) {
     var that = this
     this.container = data.container
-
     this.scene = new THREE.Scene()
-    this.antialias = data.antialias ? data.antialias : false
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: this.antialias
-    })
+    this.renderData = data.renderData ? data.renderData : {}
+    this.renderer = new THREE.WebGLRenderer(this.renderData)
     this.renderer.outputEncoding = THREE.sRGBEncoding
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.container.appendChild(this.renderer.domElement)
