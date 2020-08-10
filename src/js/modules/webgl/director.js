@@ -20,7 +20,7 @@ const director = {
       container: document.querySelector('#webgl_container'),
       renderData: {
         antialias: true,
-        alpha: true
+        // alpha: true
       }
     }, {
       srcs: SRCS.main,
