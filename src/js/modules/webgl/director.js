@@ -1,6 +1,7 @@
 import GUM from './gum/gum'
 import SRCS from './srcs'
-import * as THREE from 'three'
+
+import { initScene } from '../scene/init-scene'
 
 window.onload = function () {
   director.init()
@@ -32,64 +33,4 @@ const director = {
       progressCb: changeSimpleProgress
     })
   }
-}
-
-const initScene = (gum) => {
-  const g = gum
-  const clone = gum.d.res.glb['delorean-packed'].scene.clone()
-  g.v.scene.add(clone)
-
-  const uniforms = {
-    offset: {
-      type: 'f',
-      value: 0.0
-    }
-  }
-
-  var material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    vertexShader: document.getElementById('sunVertexShader').textContent,
-    fragmentShader: document.getElementById('sunFragmentShader').textContent
-  })
-
-  g.l.addLoop('sunShaider', () => {
-    uniforms.offset.value += 0.05
-  })
-
-
-
-  const sun = clone.getObjectByName('sun')
-  sun.material = material
-
-
-
-
-
-  // MOVE Plane
-
-
-
-
-
-  const plane = clone.getObjectByName('plane')
-
-  const plane2 = clone.getObjectByName('plane').clone()
-
-  const wapper = new THREE.Object3D()
-  plane.add(wapper)
-  const lenght = plane.children[0].geometry.boundingBox.size().z
-
-  let counter = 1
-  console.log(g.v.renderer)
-  g.l.addLoop('move', () => {
-    plane.position.z -= 0.2
-
-    if (plane.position.z <= -lenght * (counter)) {
-      console.log(1)
-      counter++
-      const planeCopy = plane2.clone()
-      planeCopy.position.z += lenght * (counter)
-      wapper.add(planeCopy)
-    }
-  })
 }
