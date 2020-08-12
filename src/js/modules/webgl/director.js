@@ -46,14 +46,11 @@ const initScene = (gum) => {
     }
   }
 
-  var geometry = new THREE.CircleGeometry(5, 32)
   var material = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: document.getElementById('sunVertexShader').textContent,
     fragmentShader: document.getElementById('sunFragmentShader').textContent
   })
-  var circle = new THREE.Mesh(geometry, material)
-  // g.v.scene.add( circle );
 
   g.l.addLoop('sunShaider', () => {
     uniforms.offset.value += 0.05
@@ -61,8 +58,8 @@ const initScene = (gum) => {
 
 
 
-
-
+  const sun = clone.getObjectByName('sun')
+  sun.material = material
 
 
 
@@ -85,7 +82,7 @@ const initScene = (gum) => {
   let counter = 1
   console.log(g.v.renderer)
   g.l.addLoop('move', () => {
-    plane.position.z -= 0.4
+    plane.position.z -= 0.2
 
     if (plane.position.z <= -lenght * (counter)) {
       console.log(1)

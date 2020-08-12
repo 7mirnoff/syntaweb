@@ -9,3 +9,4 @@
 *.glb binary
 *.fbx binary
 *.wasm binary
+*.blend binary
