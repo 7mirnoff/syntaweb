@@ -20,14 +20,23 @@ const initScene = (g) => {
 
   let counter = 1
 
-  g.l.addLoop('move', () => {
-    plane.position.z -= 0.2
+  const direct = new THREE.Vector3(0, 0, 1)
+  let speed = 0
+  let speedTarget = 0.2
 
-    if (plane.position.z <= -lenght * (counter)) {
+  g.l.addLoop('move', () => {
+
+    speed = g.l.lerp(speed, speedTarget, 0.01)
+
+    direct.normalize()
+    direct.multiplyScalar(speed)
+    plane.position.sub(direct)
+
+    if (plane.position.z <= -lenght / 2 * (counter)) {
       console.log(1)
       counter++
       const planeCopy = plane2.clone()
-      planeCopy.position.z += lenght * (counter)
+      planeCopy.position.z += lenght / 2 * (counter)
       wapper.add(planeCopy)
     }
   })
