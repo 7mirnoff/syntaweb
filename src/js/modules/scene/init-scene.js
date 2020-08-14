@@ -10,19 +10,37 @@ const initScene = (g) => {
 
   // MOVE Plane
 
-  const plane = mainScene.getObjectByName('plane')
+  const plane = mainScene.getObjectByName('plane').clone()
 
-  const plane2 = mainScene.getObjectByName('plane').clone()
+  mainScene.remove(mainScene.getObjectByName('plane'))
+
 
   const wapper = new THREE.Object3D()
-  plane.add(wapper)
+  mainScene.add(wapper)
+
+
+  wapper.add(plane.clone())
   const lenght = plane.children[0].geometry.boundingBox.size().z
 
   let counter = 1
 
   const direct = new THREE.Vector3(0, 0, 1)
   let speed = 0
-  let speedTarget = 0.2
+  let speedTarget = 0.8
+
+  const addPartRoad = () => {
+    counter++
+    const planeCopy = plane.clone()
+    planeCopy.position.z += lenght / 2 * (counter)
+    wapper.add(planeCopy)
+  }
+
+  addPartRoad()
+  addPartRoad()
+  addPartRoad()
+  addPartRoad()
+  addPartRoad()
+  addPartRoad()
 
   g.l.addLoop('move', () => {
 
@@ -30,14 +48,11 @@ const initScene = (g) => {
 
     direct.normalize()
     direct.multiplyScalar(speed)
-    plane.position.sub(direct)
+    wapper.position.sub(direct)
 
-    if (plane.position.z <= -lenght / 2 * (counter)) {
-      console.log(1)
-      counter++
-      const planeCopy = plane2.clone()
-      planeCopy.position.z += lenght / 2 * (counter)
-      wapper.add(planeCopy)
+    if (wapper.position.z <= -lenght / 2 * (counter - 5)) {
+      addPartRoad()
+      wapper.remove(wapper.children[0])
     }
   })
 }
