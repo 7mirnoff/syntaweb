@@ -20,23 +20,21 @@ const initScene = (g) => {
 
 
   wapper.add(plane.clone())
-  const lenght = plane.children[0].geometry.boundingBox.size().z
+  let lenght = plane.children[0].geometry.boundingBox.size().z
 
-  let counter = 1
+  let counter = 0
 
   const direct = new THREE.Vector3(0, 0, 1)
   let speed = 0
   let speedTarget = 0.8
-
   const addPartRoad = () => {
+    lenght += lenght
     counter++
     const planeCopy = plane.clone()
-    planeCopy.position.z += lenght / 2 * (counter)
+    planeCopy.position.z += lenght * (counter)
     wapper.add(planeCopy)
   }
 
-  addPartRoad()
-  addPartRoad()
   addPartRoad()
   addPartRoad()
   addPartRoad()
@@ -49,8 +47,8 @@ const initScene = (g) => {
     direct.normalize()
     direct.multiplyScalar(speed)
     wapper.position.sub(direct)
-
-    if (wapper.position.z <= -lenght / 2 * (counter - 5)) {
+    console.log(wapper.position.z, lenght)
+    if (wapper.position.z <= -lenght) {
       addPartRoad()
       wapper.remove(wapper.children[0])
     }
