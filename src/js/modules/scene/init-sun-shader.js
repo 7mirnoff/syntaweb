@@ -19,6 +19,7 @@ const initSunShader = (g) => {
   })
 
   const sun = g.v.scene.getObjectByName('sun')
+
   sun.material = sunShaderMaterial
 }
 

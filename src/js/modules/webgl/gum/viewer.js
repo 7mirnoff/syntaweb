@@ -14,7 +14,7 @@ const Viewer = class {
     this.container.appendChild(this.renderer.domElement)
 
     this.setSize()
-    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 4000)
+    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000)
 
     this.scene.add(this.camera)
     this.camera.position.z = 5
