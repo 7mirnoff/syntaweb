@@ -6,6 +6,11 @@ const SRCS = {
       path: '/assets/models/delorean-packed2.glb',
       name: 'delorean-packed',
       type: 'glb'
+    },
+    {
+      path: '/assets/models/lights.json',
+      name: 'lights',
+      type: 'scene'
     }
   ]
 

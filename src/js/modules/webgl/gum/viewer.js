@@ -10,14 +10,15 @@ const Viewer = class {
     this.renderData = data.renderData ? data.renderData : {}
     this.renderer = new THREE.WebGLRenderer(this.renderData)
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setPixelRatio(1.5)
     this.container.appendChild(this.renderer.domElement)
 
     this.setSize()
     this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000)
 
     this.scene.add(this.camera)
-    this.camera.position.z = 5
+    this.camera.position.y = 2
+    this.camera.position.z = -5
     this.stats = new Stats()
     this.container.appendChild(this.stats.dom)
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)

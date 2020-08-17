@@ -1,0 +1,62 @@
+{
+	"metadata": {
+		"version": 4.5,
+		"type": "Object",
+		"generator": "Object3D.toJSON"
+	},
+	"object": {
+		"uuid": "4A17AE51-187E-4DF7-9CEE-9AC8ACCFDFE9",
+		"type": "Scene",
+		"name": "Scene",
+		"layers": 1,
+		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+		"children": [
+			{
+				"uuid": "574F1D63-D0DF-4006-AF18-373DD619C6D0",
+				"type": "DirectionalLight",
+				"name": "DirectionalLight1",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,5,10,7.5,1],
+				"color": 723548,
+				"intensity": 1.08,
+				"shadow": {
+					"camera": {
+						"uuid": "67153977-8B0A-462A-B108-8005EDD67F59",
+						"type": "OrthographicCamera",
+						"layers": 1,
+						"zoom": 1,
+						"left": -5,
+						"right": 5,
+						"top": 5,
+						"bottom": -5,
+						"near": 0.5,
+						"far": 500
+					}
+				}
+			},
+			{
+				"uuid": "F9F3E4AF-D317-47A7-BE93-F6F78F2D3598",
+				"type": "DirectionalLight",
+				"name": "DirectionalLight2",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-12.225021,10,-5.495874,1],
+				"color": 8066696,
+				"intensity": 0.3,
+				"shadow": {
+					"camera": {
+						"uuid": "3F09AC63-A11B-4102-B760-9E5ABA8E5705",
+						"type": "OrthographicCamera",
+						"layers": 1,
+						"zoom": 1,
+						"left": -5,
+						"right": 5,
+						"top": 5,
+						"bottom": -5,
+						"near": 0.5,
+						"far": 500
+					}
+				}
+			}],
+		"background": 0
+	}
+}

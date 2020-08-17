@@ -1,12 +1,14 @@
 import * as THREE from 'three'
 
 import { initSunShader } from './init-sun-shader'
+import { initLights } from './init-lights'
 
 const initScene = (g) => {
   const mainScene = g.d.res.glb['delorean-packed'].scene.clone()
   g.v.scene.add(mainScene)
 
   initSunShader(g)
+  initLights(g)
 
 
   const plane = mainScene.getObjectByName('plane').clone()
@@ -23,8 +25,8 @@ const initScene = (g) => {
   let counter = 0
 
   const direct = new THREE.Vector3(0, 0, 1)
-  let speed = 0
-  let speedTarget = 0.8
+  let speed = 0.1
+  const speedTarget = 0.3
   console.log(lenght)
   const addPartRoad = () => {
     counter++
