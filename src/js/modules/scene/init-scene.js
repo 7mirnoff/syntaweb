@@ -10,14 +10,16 @@ const initScene = (g) => {
   initSunShader(g)
   initLights(g)
 
-
   const plane = mainScene.getObjectByName('plane').clone()
-  mainScene.remove(mainScene.getObjectByName('plane'))
+  const wheel_1 = mainScene.getObjectByName('wheel-1').clone()
+  const wheel_2 = mainScene.getObjectByName('wheel-2').clone()
+  const wheel_3 = mainScene.getObjectByName('wheel-3').clone()
+  const wheel_4 = mainScene.getObjectByName('wheel-4').clone()
 
+  mainScene.remove(mainScene.getObjectByName('plane'))
 
   const wapper = new THREE.Object3D()
   mainScene.add(wapper)
-
 
   wapper.add(plane.clone())
   const lenght = plane.children[0].geometry.boundingBox.size().z
@@ -27,7 +29,7 @@ const initScene = (g) => {
   const direct = new THREE.Vector3(0, 0, 1)
   let speed = 0.1
   const speedTarget = 0.3
-  console.log(lenght)
+
   const addPartRoad = () => {
     counter++
     const planeCopy = plane.clone()
@@ -42,7 +44,6 @@ const initScene = (g) => {
   addPartRoad()
 
   g.l.addLoop('move', () => {
-
     speed = g.l.lerp(speed, speedTarget, 0.01)
 
     direct.normalize()
