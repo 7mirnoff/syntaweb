@@ -11,10 +11,12 @@ const initScene = (g) => {
   initLights(g)
 
   const plane = mainScene.getObjectByName('plane').clone()
-  const wheel_1 = mainScene.getObjectByName('wheel-1').clone()
-  const wheel_2 = mainScene.getObjectByName('wheel-2').clone()
-  const wheel_3 = mainScene.getObjectByName('wheel-3').clone()
-  const wheel_4 = mainScene.getObjectByName('wheel-4').clone()
+
+  const wheel1 = mainScene.getObjectByName('wheel-1')
+  const wheel2 = mainScene.getObjectByName('wheel-2')
+  const wheel3 = mainScene.getObjectByName('wheel-3')
+  const wheel4 = mainScene.getObjectByName('wheel-4')
+  const wheels = [wheel1, wheel2, wheel3, wheel4]
 
   mainScene.remove(mainScene.getObjectByName('plane'))
 
@@ -49,6 +51,12 @@ const initScene = (g) => {
     direct.normalize()
     direct.multiplyScalar(speed)
     wapper.position.sub(direct)
+
+
+
+    wheels.forEach(wheel => {
+      wheel.rotation.x -= 0.1 / speed
+    })
 
     if (wapper.position.z <= -lenght * (counter) + 4 * lenght) {
       addPartRoad()
