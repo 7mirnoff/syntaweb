@@ -9,7 +9,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const params = {
   exposure: 0.1,
-  bloomStrength: 0.2,
+  bloomStrength: 0.7,
   bloomThreshold: 0,
   bloomRadius: 0
 };
