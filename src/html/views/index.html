@@ -18,8 +18,8 @@
     varying vec2 vUv;
     uniform float offset;
     void main() {
-      vec4 firstColor = vec4(1.,.6235,.4941,1.);//первый цвет
-      vec4 secondColor = vec4(.9372,.1294,.3176,1.);//Второй цвет
+      vec4 firstColor = vec4(1.,.6235,.1941,0.1);//первый цвет
+      vec4 secondColor = vec4(.9372,.1294,.1176,0.1);//Второй цвет
       float lineSize = 9.;//Размер линий
       float progress = pow((vUv.y)*lineSize,2.);// Возводим в квадрат чтобы линиии были не равномерные
       progress = progress-offset;// отнимаем отступ для анимации, отступ меняет в update
