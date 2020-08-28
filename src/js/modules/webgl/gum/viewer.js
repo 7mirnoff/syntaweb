@@ -1,18 +1,8 @@
 import * as THREE from 'three'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
-import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js'
-import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js'
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import Stats from 'three/examples/jsm/libs/stats.module'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-
-const params = {
-  exposure: 0.1,
-  bloomStrength: 0.7,
-  bloomThreshold: 0,
-  bloomRadius: 0
-}
 
 const Viewer = class {
   constructor (data) {
@@ -35,34 +25,19 @@ const Viewer = class {
     this.container.appendChild(this.stats.dom)
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
 
-
-    // ПОСТПРОЦЕССИНГ
-    this.effect = new EffectComposer(this.renderer)
+    this.composer = new EffectComposer(this.renderer)
     this.renderPass = new RenderPass(this.scene, this.camera)
-    this.effect.addPass(this.renderPass)
-    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85)
-    this.bloomPass.threshold = params.bloomThreshold
-    this.bloomPass.strength = params.bloomStrength
-    this.bloomPass.radius = params.bloomRadius
-    this.effect.addPass(this.bloomPass)
-
-    this.effect.addPass(new GlitchPass())
-
-    const bokehPass = new BokehPass(this.scene, this.camera, {
-      focus: 1.0,
-      aperture: 0.00001,
-      maxblur: 0.001,
-
-      width: window.innerWidth,
-      height: window.innerHeight
-    })
-    this.effect.addPass(bokehPass)
+    this.composer.addPass(this.renderPass)
 
     // ПОСТПРОЦЕССИНГ
 
     window.addEventListener('resize', function () {
       that.onResize()
     })
+  }
+
+  addEffect (effect) {
+    this.composer.addPass(effect)
   }
 
   setSize () {
@@ -87,7 +62,7 @@ const Viewer = class {
   update () {
     this.controls.update()
     // this.renderer.render(this.scene, this.camera)
-    this.effect.render()
+    this.composer.render()
     this.stats.update()
   }
 }

@@ -2,6 +2,7 @@ import * as THREE from 'three'
 
 import { initSunShader } from './init-sun-shader'
 import { initLights } from './init-lights'
+import { postprocessing } from './postprocessing'
 
 const initScene = (g) => {
   const mainScene = g.d.res.glb['delorean-packed'].scene.clone()
@@ -9,6 +10,7 @@ const initScene = (g) => {
 
   initSunShader(g)
   initLights(g)
+  postprocessing(g)
 
   const plane = mainScene.getObjectByName('plane').clone()
 
