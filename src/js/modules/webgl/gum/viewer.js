@@ -13,11 +13,11 @@ const Viewer = class {
     this.renderer = new THREE.WebGLRenderer(this.renderData)
 
     this.renderer.outputEncoding = THREE.sRGBEncoding
-    this.renderer.setPixelRatio(2)
+    this.renderer.setPixelRatio(1.5)
     this.container.appendChild(this.renderer.domElement)
 
     this.setSize()
-    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 1000)
+    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 10000)
     this.scene.add(this.camera)
     this.camera.position.y = 2
     this.camera.position.z = -5

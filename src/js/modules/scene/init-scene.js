@@ -65,6 +65,16 @@ const initScene = (g) => {
       wapper.remove(wapper.children[0])
     }
   })
+
+  const bg = g.d.res.scenes['bg'].clone()
+  g.v.scene.add(bg)
+  const bgsphere = bg.getObjectByName('bgsphere')
+  bgsphere.material.side = THREE.DoubleSide
+  const lightbg = bg.getObjectByName('lightbg')
+  const lightTarget = new THREE.Object3D()
+  lightTarget.position.set(880, 880, 800)
+  lightbg.target = lightTarget
+
 }
 
 export { initScene }

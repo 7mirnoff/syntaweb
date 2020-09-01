@@ -1,0 +1,92 @@
+{
+	"metadata": {
+		"version": 4.5,
+		"type": "Object",
+		"generator": "Object3D.toJSON"
+	},
+	"geometries": [
+		{
+			"uuid": "DA7F43F7-D0D4-4B70-8185-50668B1F76D0",
+			"type": "SphereBufferGeometry",
+			"radius": 1,
+			"widthSegments": 8,
+			"heightSegments": 6,
+			"phiStart": 0,
+			"phiLength": 6.283185,
+			"thetaStart": 0,
+			"thetaLength": 3.141593
+		}],
+	"materials": [
+		{
+			"uuid": "053009B5-ED89-4E92-9545-A6AD21A9F3AE",
+			"type": "MeshStandardMaterial",
+			"color": 16777215,
+			"roughness": 1,
+			"metalness": 0,
+			"emissive": 0,
+			"depthFunc": 3,
+			"depthTest": true,
+			"depthWrite": true,
+			"stencilWrite": false,
+			"stencilWriteMask": 255,
+			"stencilFunc": 519,
+			"stencilRef": 0,
+			"stencilFuncMask": 255,
+			"stencilFail": 7680,
+			"stencilZFail": 7680,
+			"stencilZPass": 7680
+		}],
+	"object": {
+		"uuid": "D80D967D-CE35-4192-8A2D-180A5EA1D137",
+		"type": "Scene",
+		"name": "Scene",
+		"layers": 1,
+		"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+		"children": [
+			{
+				"uuid": "EC5D1BC4-C2B2-4573-83AE-04F5D2D6C0EF",
+				"type": "Group",
+				"name": "bg",
+				"layers": 1,
+				"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1],
+				"children": [
+					{
+						"uuid": "40A0DD23-38F3-4711-8D01-2B94CE965AE2",
+						"type": "Mesh",
+						"name": "bgsphere",
+						"layers": 1,
+						"matrix": [1000,0,0,0,0,1000,0,0,0,0,1000,0,0,0,0,1],
+						"geometry": "DA7F43F7-D0D4-4B70-8185-50668B1F76D0",
+						"material": "053009B5-ED89-4E92-9545-A6AD21A9F3AE"
+					},
+					{
+						"uuid": "C7A42FCE-4D6F-4393-9B85-06D044688261",
+						"type": "SpotLight",
+						"name": "lightbg",
+						"layers": 1,
+						"matrix": [1,0,0,0,0,1,0,0,0,0,1,0,5,10,705.711935,1],
+						"color": 16777215,
+						"intensity": 1,
+						"distance": 0,
+						"angle": 0.314159,
+						"decay": 1,
+						"penumbra": 0,
+						"shadow": {
+							"camera": {
+								"uuid": "D9B7C97A-A62E-4F56-9F9D-7E838C370C13",
+								"type": "PerspectiveCamera",
+								"layers": 1,
+								"fov": 50,
+								"zoom": 1,
+								"near": 0.5,
+								"far": 500,
+								"focus": 10,
+								"aspect": 1,
+								"filmGauge": 35,
+								"filmOffset": 0
+							}
+						}
+					}]
+			}]
+	}
+}

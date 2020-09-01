@@ -11,6 +11,11 @@ const SRCS = {
       path: '/assets/models/lights.json',
       name: 'lights',
       type: 'scene'
+    },
+    {
+      path: '/assets/models/bg.json',
+      name: 'bg',
+      type: 'scene'
     }
   ]
 
